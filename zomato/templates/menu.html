@@ -1,0 +1,40 @@
+<!-- Add a link to the "Add Menu" page -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Menu</title>
+    <style>
+        /* Apply styles to menu items */
+        .menu-item {
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin: 10px 0;
+            background-color: #f9f9f9;
+        }
+
+        /* Style the "Remove" link */
+        .remove-link {
+            color: #f00;
+            text-decoration: none;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <a style="margin-bottom: 40px; background-color: #007bff;color: aqua;text-decoration: none;border-radius: 40px;margin: 30px;margin-top: 40px; font-size: 24px;padding: 12px;" href="{% url 'add_menu' %}">Add Menu Item</a>
+
+    {% for dish in data %}
+        <div class="menu-item">
+            <div style="padding: 15px; border-radius: 20px; display: flex;font-size: 25px; justify-content: space-between;color: white; background-color: teal;">
+                <p>Dish Name: {{ dish.dish_name }}</p>
+                <p>Price: {{ dish.price }}</p>
+                <p>Availability: {{ dish.availability }}</p>
+
+                <a style="color: white; font-size: 25px;" href="{% url 'update_availability' dish.id %}" class="remove-link">Edit</a><br>
+                <a style="color: white; font-size: 25px;" href="{% url 'remove_menu' dish.id  %}" class="remove-link">Remove</a><br>
+            </div>
+        </div>
+    {% endfor %}*
+</body>
+</html>
